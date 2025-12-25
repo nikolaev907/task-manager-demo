@@ -1,0 +1,54 @@
+body {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.task-card {
+    margin-bottom: 15px;
+    transition: all 0.3s;
+}
+
+.task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.status-badge {
+    font-size: 0.8em;
+}
+
+.notification-area {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.notification-item {
+    padding: 8px;
+    margin-bottom: 5px;
+    border-left: 4px solid #007bff;
+    background-color: #f8f9fa;
+}
+
+.socket-status {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.connected {
+    background-color: #28a745;
+}
+
+.disconnected {
+    background-color: #dc3545;
+}
+
+#cancelEditBtnstyle {
+    display: none;
+}
