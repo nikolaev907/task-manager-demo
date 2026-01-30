@@ -8,7 +8,7 @@
 - Modern frontend with Bootstrap 5
 - Complete CI/CD cycle via Docker
 
-## Технологический стек
+## Technology stack
 - **Backend**: `Java 11`, `Spring Boot 2.7`, `Maven`
 - **Database**: `PostgreSQL`
 - **Message Queue**: `Apache Kafka`
@@ -16,9 +16,9 @@
 - **Frontend**: `jQuery`, `Bootstrap 5`
 - **Containerization**: `Docker`, `Docker Compose`
 - **Build Tool**: `Maven`
-- **Логирование**: `SLF4J` with `Lombok`
+- **Logging**: `SLF4J` with `Lombok`
 
-## Build backand:
+## Build backend:
 1. `cd backend`
 2. `mvn clean package`
 
