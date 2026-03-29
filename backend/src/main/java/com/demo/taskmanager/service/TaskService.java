@@ -6,6 +6,8 @@ import com.demo.taskmanager.model.TaskStatus;
 import com.demo.taskmanager.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +21,8 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
     private final KafkaConsumerService kafkaConsumerService;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final SimpMessagingTemplate messagingTemplate;
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
@@ -84,7 +88,8 @@ public class TaskService {
     private void sendNotification(String message, String taskTitle, TaskStatus status, LocalDateTime updatedAt) {
         Notification notification = new Notification(message, taskTitle, status, updatedAt);
         try {
-            kafkaConsumerService.consumeNotification(notification);
+            kafkaTemplate.send("task-notifications", notification);
+            messagingTemplate.convertAndSend("/topic/notifications", notification);
         } catch (Exception e) {
             log.error("Notification send error: {}", e.getMessage());
         }
