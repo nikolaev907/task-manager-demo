@@ -19,7 +19,7 @@ function connectWebSocket() {
     const socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);
 
-    stompClient.connect({}, function (frame) {
+    stompClient.connect({}, function () {
         updateConnectionStatus(true, 'Connected to WebSocket');
         stompClient.subscribe('/topic/notifications', function (message) {
             const notification = JSON.parse(message.body);
@@ -65,6 +65,7 @@ function clearNotifications() {
 }
 
 function loadTasks() {
+    $('#selectTask').val('');
     $.ajax({
         url: '/api/tasks',
         method: 'GET',
