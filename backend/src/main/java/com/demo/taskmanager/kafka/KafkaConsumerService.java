@@ -1,4 +1,4 @@
-package com.demo.taskmanager.service;
+package com.demo.taskmanager.kafka;
 
 import com.demo.taskmanager.model.Notification;
 import lombok.RequiredArgsConstructor;
