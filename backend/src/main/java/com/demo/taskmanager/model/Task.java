@@ -19,7 +19,7 @@ public class Task {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private TaskStatus status = TaskStatus.PENDING;
+    private TaskStatus status;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
