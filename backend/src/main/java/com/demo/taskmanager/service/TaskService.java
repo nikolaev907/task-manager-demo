@@ -20,7 +20,6 @@ import java.util.List;
 public class TaskService {
 
     private final TaskRepository taskRepository;
-    private final KafkaConsumerService kafkaConsumerService;
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final SimpMessagingTemplate messagingTemplate;
 
@@ -38,10 +37,10 @@ public class TaskService {
 
     @Transactional
     public Task createTask(Task task) {
-        task.setStatus(TaskStatus.PENDING);
+        TaskStatus taskStatus = task.getStatus() == null ? TaskStatus.PENDING : task.getStatus();
         Task savedTask = taskRepository.save(task);
 
-        sendNotification("Task created", savedTask.getTitle(), TaskStatus.PENDING, task.getUpdatedAt());
+        sendNotification("Task created", savedTask.getTitle(), taskStatus, task.getUpdatedAt());
         return savedTask;
     }
 
